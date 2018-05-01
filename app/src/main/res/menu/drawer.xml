@@ -22,6 +22,12 @@
 
             </menu>
         </item>
+        <item
+            android:id="@+id/logout"
+            android:icon="@mipmap/ic_launcher"
+            android:title="退出登录">
+
+        </item>
 
 
     </group>

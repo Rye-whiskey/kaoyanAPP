@@ -28,6 +28,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sjl94.kaoyan.Activity.PublishWeizhi;
 import com.example.sjl94.kaoyan.Activity.PublishXinde;
 import com.example.sjl94.kaoyan.MainActivity;
 import com.example.sjl94.kaoyan.R;
@@ -287,6 +288,10 @@ public class ExpFragment extends Fragment{
             public void onClick(View v) {
 
                 Toast.makeText(getActivity(),"点击了"+tv_Edit.getText().toString(), Toast.LENGTH_SHORT).show();
+
+
+                Intent intent = new Intent(getActivity(), PublishWeizhi.class);
+                startActivity(intent);
 
                 mRotate(mImageView);
                 mMenuPop.dismiss();

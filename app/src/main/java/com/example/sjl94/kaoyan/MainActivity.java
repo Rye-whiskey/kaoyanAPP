@@ -1,6 +1,7 @@
 package com.example.sjl94.kaoyan;
 
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -9,16 +10,23 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.bumptech.glide.Glide;
 import com.example.sjl94.kaoyan.adapter.TapFragmentPagerAdapter;
 import com.example.sjl94.kaoyan.fragments.ContentFragment;
 import com.example.sjl94.kaoyan.fragments.ExpFragment;
 import com.example.sjl94.kaoyan.fragments.NewsFragment;
 import com.example.sjl94.kaoyan.fragments.StudyFragment;
+import com.example.sjl94.kaoyan.users.LoginActivity;
+import com.example.sjl94.kaoyan.utils.PreferencesUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +37,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private BottomNavigationItem msgItem;
     private BottomNavigationItem zixunItem;
     private BottomNavigationItem xindeItem;
-
+    private ImageView imageView;
+    private View headerLayout;
+    private TextView username;
     //侧拉栏
 
 
@@ -39,9 +49,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private List<Fragment> list;
     private TapFragmentPagerAdapter adapter;
 
-    private Fragment msgFrag;
-    private Fragment zixunFrag;
-    private Fragment xindeFrag;
 
 
     @Override
@@ -92,9 +99,21 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
 
         final NavigationView navigationView =(NavigationView)findViewById(R.id.navigationView);
+        headerLayout=navigationView.inflateHeaderView(R.layout.drawer_header);
+        imageView=(ImageView)headerLayout.findViewById(R.id.tx);
+        username=(TextView)headerLayout.findViewById(R.id.username);
+        username.setText(PreferencesUtils.getString(MainActivity.this,"username"));
+        Glide.with(MainActivity.this)
+                .load("http://193.112.122.190:3000/public/images/"+"sdf.png")
+                .into(imageView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.logout:
+
+                        toActivity(LoginActivity.class);
+                }
                 return false;
             }
         });
@@ -169,4 +188,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private void hideAllFrag(){
 
     }
+    //页面跳转
+    public void toActivity(Class<?> cla){
+        Intent intent=new Intent(this,cla);
+        startActivity(intent);
+    }
+
 }

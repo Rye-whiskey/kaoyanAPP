@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/line"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+            <RelativeLayout
+
+
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:padding="20dp"
+
+                    android:id="@+id/title"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:text="教育部公布2018年全国硕士研究生分数线要求切实做好复试调剂录取工作"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <LinearLayout
+                    android:layout_below="@+id/title"
+                    android:layout_width="match_parent"
+                    android:background="#000"
+                    android:layout_height="2dp"></LinearLayout>
+
+
+
+
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/content"
+            android:padding="30dp"
+            android:layout_below="@+id/line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="今日，教育部公布《2018年全国硕士研究生招生考试考生进入复试的初试成绩基本要求》(国家分数线)，2018年全国硕士研究生复试录取工作全面展开。教育部此前印发《2018年全国硕士研究生招生管理规定》，对2018年硕士研究生招生复试、调剂、录取、信息公开公示以及违规处理等各项工作做出全面部署，要求招生单位坚持“按需招生、全面衡量、择优录取、宁缺毋滥”的原则，确保招生录取科学规范、公平公正。为进一步发挥调剂制度优势，提升调剂工作服务质量，更好满足考生多元志愿选择，教育部近日印发《教育部办公厅关于做好硕士研究生招生调剂工作的通知》，对招生单位进一步改进调剂工作作风、规范调剂工作程序、提高调剂工作效率、强化调剂工作监管提出明确要求。同时，对“全国硕士生招生调剂服务系统”进行了升级优化。一是从便利考生出发，缩短考生调剂志愿锁定时间，由原来的48小时改为各招生单位自主设定，最长不超过36小时，减少考生等待时间。二是提升供需有效对接，精准发布调剂要求，允许招生单位根据本单位接收调剂办法设置接收考生调剂的初试成绩要求，避免考生盲目报考。三是强化考生服务，增加考生在线留言功能，招生单位可对调剂过程中的热点共性问题集中统一答复，同时还将通过增设咨询电话、安排专人值守等方式，及时解答考生咨询，确保信息沟通畅通。"/>
+
+
+
+        <LinearLayout
+            android:layout_below="@+id/content"
+            android:layout_width="match_parent"
+            android:background="#000"
+            android:layout_height="2dp"></LinearLayout>
+
+
+
+        <ListView
+            android:paddingTop="15dp"
+            android:layout_below="@+id/content"
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/comment"
+            app:met_floatingLabel="normal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+
+            android:hint="评论"
+            android:layout_weight="8"/>
+
+        <Button
+            android:id="@+id/btn_comment"
+            android:text="发布"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+</FrameLayout>
+</ScrollView>
+</RelativeLayout>

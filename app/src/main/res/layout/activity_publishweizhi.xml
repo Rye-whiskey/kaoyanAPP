@@ -8,34 +8,21 @@
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
         app:met_floatingLabel="normal"
         android:layout_marginTop="60dp"
 
-        android:hint="标题"/>
+        android:hint="位置描述"/>
 
 
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/content"
-        android:layout_below="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        app:met_floatingLabel="normal"
-        android:layout_marginTop="20dp"
-        app:met_singleLineEllipsis="true"
-        app:met_clearButton="true"
-        android:lines="5"
-        android:hint="内容"/>
 
 
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/key"
-        android:layout_below="@+id/content"
+        android:layout_below="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
@@ -43,9 +30,10 @@
         app:met_floatingLabel="normal"
         android:layout_marginTop="20dp"
 
-        android:hint="关键词"/>
+        android:hint="离开时间"/>
 
     <com.gc.materialdesign.views.ButtonRectangle
+
         android:layout_below="@+id/key"
         android:id="@+id/btn_publish"
         android:layout_width="match_parent"

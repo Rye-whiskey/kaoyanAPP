@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/main_fl_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="500dp"
+    android:padding="20dp"
+ >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:contentDescription="@null"
+        android:padding="16dp"
+        android:src="@drawable/rectangle_front"/>
+
+    <TextView
+        android:id="@+id/vacname"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginBottom="100dp"
+        android:textSize="30sp"
+        android:textColor="#000"
+        android:text="hello"/>
+    <TextView
+        android:id="@+id/vacmeans"
+
+        android:layout_width="250dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="正面"
+
+        android:textSize="20sp"/>
+
+
+    <ImageButton
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="bottom"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/new_bj"/>
+
+    </FrameLayout>
+</RelativeLayout>

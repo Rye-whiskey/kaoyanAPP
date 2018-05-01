@@ -13,9 +13,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.sjl94.kaoyan.MainActivity;
 import com.example.sjl94.kaoyan.R;
 import com.example.sjl94.kaoyan.api.Api;
@@ -58,6 +60,7 @@ public class LoginActivity extends Activity {
     private ButtonRectangle btn_login;
     private MaterialEditText username;
     private MaterialEditText password;
+    private ImageView imageView;
     private String str_username;
     private String str_password;
     private Dialog md;
@@ -75,13 +78,12 @@ public class LoginActivity extends Activity {
     }
 
     private void initView(){
+        imageView=(ImageView)findViewById(R.id.tx);
         btn_login=(ButtonRectangle) findViewById(R.id.btn_login);
         username=(MaterialEditText)findViewById(R.id.username);
         password=(MaterialEditText)findViewById(R.id.password);
         btn_toRegister=(ButtonFlat) findViewById(R.id.btn_toRegister);
-        checkBox=(CheckBox)findViewById(R.id.checkBox);
-        //设置默认记住密码
-        checkBox.setChecked(true);
+
         /*如果SP里面保存了用户名密码，就将它取出来*/
         str_username= PreferencesUtils.getString(LoginActivity.this,"username");
         str_password=PreferencesUtils.getString(LoginActivity.this,"password");
@@ -98,6 +100,7 @@ public class LoginActivity extends Activity {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+
             }
 
             @Override
@@ -107,26 +110,9 @@ public class LoginActivity extends Activity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                //构造请求体
-                HashMap<String,String> params=new HashMap<>();
-                params.put("username",str_username);
-                JSONObject jsonObject = new JSONObject(params);
-                //发送登录请求
-
-                OkGo.post(Api.GET_IMAGE)
-                        .tag(this)
-                        .upJson(jsonObject.toString())
-                        .execute(new StringCallback(){
-
-
-                            @Override
-                            public void onSuccess(String s, Call call, Response response) {
-                               image =new Image();
-                               image= JsonUtils.fromJson(s,Image.class);
-                               Bitmap bitmap = Base64Utils.byteToBitmap(Base64Utils.strToByteArray(image.getImage()));
-
-                            }
-                        });
+                Glide.with(LoginActivity.this)
+                        .load("http://193.112.122.190:3000/public/images/"+username.getText()+".png")
+                        .into(imageView);
 
             }
         });
@@ -159,7 +145,7 @@ public class LoginActivity extends Activity {
 
         str_username=username.getText().toString();
         str_password=password.getText().toString();
-        UserManage.getInstance().saveUserInfo(LoginActivity.this,str_username,str_password);
+
         if(StringUtils.isSpace(str_username)){
             Toast.makeText(LoginActivity.this,"用户名不能为空",Toast.LENGTH_SHORT).show();
             return;
@@ -195,12 +181,10 @@ public class LoginActivity extends Activity {
 
                         if(login.getStatus().equals(Constant.SUCCESS)){
 
-                            /*如果勾选了记住密码，且登录成功，就保存用户名密码*/
-                            if(checkBox.isCheck()){
-                              /*记住用户名密码*/
-                                PreferencesUtils.putString(LoginActivity.this,"username",str_username);
-                                PreferencesUtils.putString(LoginActivity.this,"password",str_password);
-                            }
+
+                            PreferencesUtils.putString(LoginActivity.this,"username",str_username);
+                            PreferencesUtils.putString(LoginActivity.this,"password",str_password);
+
                             toActivity(MainActivity.class);
                             Toast.makeText(LoginActivity.this,"登陆成功",Toast.LENGTH_SHORT).show();
                             LoginActivity.this.finish();
@@ -224,6 +208,7 @@ public class LoginActivity extends Activity {
     //页面跳转
     public void toActivity(Class<?> cla){
         Intent intent=new Intent(this,cla);
+
         startActivity(intent);
     }
 

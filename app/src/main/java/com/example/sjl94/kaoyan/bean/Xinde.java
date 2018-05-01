@@ -1,6 +1,7 @@
 package com.example.sjl94.kaoyan.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by sjl94 on 2018/3/31.
@@ -12,6 +13,7 @@ public class Xinde implements Serializable{
     private String createTime;
     private String content;
     private String key;
+    private String _id;
 
 
     public String getUsername(){
@@ -29,6 +31,12 @@ public class Xinde implements Serializable{
     public String getKey(){
         return key;
     }
+    public String get_id(){
+        return _id;
+    }
+    public void set_id(String _id){
+        this._id=_id;
+    }
     public void setUsername(String username){
         this.username=username;
     }
@@ -44,5 +52,7 @@ public class Xinde implements Serializable{
     public void setKey(String key){
         this.key=key;
     }
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.sjl94.kaoyan;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.SparseArray;
@@ -8,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.example.sjl94.kaoyan.utils.PreferencesUtils;
 
 /**
  * Created by sjl94 on 2018/3/31.
@@ -72,9 +76,14 @@ public class ViewHolder {
     /**
      * 为ImageView赋值——bitmap
      */
-    public ViewHolder setImageBitmap(int viewId, Bitmap bitmap) {
+    public ViewHolder setImageBitmap(Activity activity,int viewId, String username) {
         ImageView view = getItemView(viewId);
-        view.setImageBitmap(bitmap);
+
+        Glide.with(activity)
+                .load("http://193.112.122.190:3000/public/images/"+ username+".png")
+                .into(view);
+
+
         return this;
     }
 

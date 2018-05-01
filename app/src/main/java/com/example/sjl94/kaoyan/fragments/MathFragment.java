@@ -8,8 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.sjl94.kaoyan.Activity.MathActivity;
+import com.example.sjl94.kaoyan.Activity.WordActivity;
 import com.example.sjl94.kaoyan.Activity.XindeActivity;
 import com.example.sjl94.kaoyan.R;
 import com.example.sjl94.kaoyan.ViewHolder;
@@ -17,6 +20,7 @@ import com.example.sjl94.kaoyan.adapter.ComAdapter;
 import com.example.sjl94.kaoyan.api.Api;
 import com.example.sjl94.kaoyan.bean.Xinde;
 import com.example.sjl94.kaoyan.utils.JsonUtils;
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -42,6 +46,8 @@ public class MathFragment extends Fragment {
     private JsonParser parser;
     private JsonArray jsonArray;
     private Xinde bean;
+    private ButtonRectangle math;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.math_frag,null);
@@ -51,7 +57,7 @@ public class MathFragment extends Fragment {
 
         xindeList =new ArrayList<Xinde>();
 
-
+        math = (ButtonRectangle)view.findViewById(R.id.btn_math);
 
 
                /*构造请求体*/
@@ -90,6 +96,7 @@ public class MathFragment extends Fragment {
                 holder.setTextView(R.id.item_title,item.getTitle());
                 holder.setTextView(R.id.item_time,item.getCreateTime());
                 holder.setTextView(R.id.content,item.getContent());
+                holder.setImageBitmap(getActivity(),R.id.item_tx,item.getUsername());
                 holder.setTextView(R.id.item_key,item.getKey());
             }
         };
@@ -101,16 +108,35 @@ public class MathFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                toActivity(XindeActivity.class);
+                String id=xindeList.get(i).get_id();
+                String title=xindeList.get(i).getTitle();
+                String time=xindeList.get(i).getCreateTime();
+                String content=xindeList.get(i).getContent();
+                String key=xindeList.get(i).getKey();
+                String username=xindeList.get(i).getUsername();
+                Intent intent=new Intent(getActivity(),XindeActivity.class);
+                intent.putExtra("id",id);
+                intent.putExtra("title",title);
+                intent.putExtra("time",time);
+                intent.putExtra("content",content);
+                intent.putExtra("key",key);
+                intent.putExtra("username",username);
+                startActivity(intent);
             }
         });
+
+
+        math.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), MathActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         return view;
     }
 
-    //页面跳转
-    public void toActivity(Class<?> cla){
-        Intent intent=new Intent(getActivity(),cla);
-        startActivity(intent);
-    }
+
 }

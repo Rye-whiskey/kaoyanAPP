@@ -8,22 +8,21 @@
         android:orientation="horizontal"
         android:id="@+id/eng_line1"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:weightSum="3">
+        android:layout_height="50dp"
+        android:weightSum="2">
 
-        <Button
-            android:id="@+id/btn_danci"
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:id="@+id/btn_math"
             android:text="公式"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
-        <Button
-            android:id="@+id/btn_tiku"
-            android:text="题库"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-        <Button
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:id="@+id/btn_zuowen"
             android:text="难题"
             android:layout_width="wrap_content"

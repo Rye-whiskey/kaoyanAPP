@@ -42,6 +42,12 @@ public abstract class ComAdapter<T> extends BaseAdapter {
         return position;
     }
 
+    public void updateView(List<T> nowList)
+    {
+        this.mData = nowList;
+        this.notifyDataSetChanged();//强制动态刷新数据进而调用getView方法
+    }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

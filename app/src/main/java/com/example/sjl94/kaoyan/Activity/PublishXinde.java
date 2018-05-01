@@ -10,6 +10,7 @@ import com.example.sjl94.kaoyan.api.Api;
 import com.example.sjl94.kaoyan.bean.UserInfo;
 import com.example.sjl94.kaoyan.users.RegisterActivity;
 import com.example.sjl94.kaoyan.users.UserManage;
+import com.example.sjl94.kaoyan.utils.PreferencesUtils;
 import com.example.sjl94.kaoyan.utils.StringUtils;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.lzy.okgo.OkGo;
@@ -65,7 +66,7 @@ public class PublishXinde extends AppCompatActivity{
     }
 
     public void fabu(){
-        str_username= UserManage.getInstance().getUserInfo(this).getUsername();
+        str_username= PreferencesUtils.getString(PublishXinde.this,"username");
         str_title=title.getText().toString();
         str_content=content.getText().toString();
         str_key=key.getText().toString();

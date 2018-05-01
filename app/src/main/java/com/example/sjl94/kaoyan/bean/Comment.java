@@ -8,14 +8,9 @@ public class Comment {
 
     private String username;
     private String time;
-    private String content;
+    private String comment;
 
-    public Comment(String username, String time, String content){
-        this.username=username;
-        this.time=time;
-        this.content=content;
 
-    }
 
     public String getUsername(){
         return username;
@@ -23,8 +18,8 @@ public class Comment {
     public String getTime(){
         return time;
     }
-    public String getContent(){
-        return content;
+    public String getComment(){
+        return comment;
     }
 
 

@@ -90,6 +90,7 @@ public class XindeFragment extends Fragment {
                 if(item.getCreateTime()!=null)
                 holder.setTextView(R.id.item_time, TimeUtil.GTMToLocal(item.getCreateTime()));
                 holder.setTextView(R.id.content,item.getContent());
+                holder.setImageBitmap(getActivity(),R.id.item_tx,item.getUsername());
                 holder.setTextView(R.id.item_key,item.getKey());
             }
         };
@@ -101,7 +102,22 @@ public class XindeFragment extends Fragment {
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                toActivity(XindeActivity.class);
+                String id=xindeList.get(i).get_id();
+                String title=xindeList.get(i).getTitle();
+                String time=xindeList.get(i).getCreateTime();
+                String content=xindeList.get(i).getContent();
+                String key=xindeList.get(i).getKey();
+                String username=xindeList.get(i).getUsername();
+                Intent intent=new Intent(getActivity(),XindeActivity.class);
+                intent.putExtra("id",id);
+                intent.putExtra("title",title);
+                intent.putExtra("time",time);
+                intent.putExtra("content",content);
+                intent.putExtra("key",key);
+                intent.putExtra("username",username);
+
+                startActivity(intent);
+
             }
         });
 
@@ -110,9 +126,5 @@ public class XindeFragment extends Fragment {
     }
 
 
-    //页面跳转
-    public void toActivity(Class<?> cla){
-        Intent intent=new Intent(getActivity(),cla);
-        startActivity(intent);
-    }
+
 }

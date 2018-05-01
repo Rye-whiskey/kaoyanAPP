@@ -28,6 +28,10 @@
         <activity android:name=".Activity.XindeActivity"></activity>
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".Activity.PublishXinde"></activity>
+        <activity android:name=".Activity.WordActivity"></activity>
+        <activity android:name=".Activity.MathActivity"></activity>
+        <activity android:name=".Activity.NewsActivity"></activity>
+        <activity android:name=".Activity.PublishWeizhi"></activity>
     </application>
 
 </manifest>

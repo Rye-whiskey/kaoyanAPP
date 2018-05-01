@@ -1,26 +1,20 @@
 package com.example.sjl94.kaoyan.Activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.sjl94.kaoyan.MainActivity;
 import com.example.sjl94.kaoyan.R;
 import com.example.sjl94.kaoyan.ViewHolder;
 import com.example.sjl94.kaoyan.adapter.ComAdapter;
 import com.example.sjl94.kaoyan.api.Api;
 import com.example.sjl94.kaoyan.bean.Comment;
-import com.example.sjl94.kaoyan.bean.Xinde;
 import com.example.sjl94.kaoyan.utils.JsonUtils;
 import com.example.sjl94.kaoyan.utils.PreferencesUtils;
 import com.google.gson.JsonArray;
@@ -40,46 +34,33 @@ import okhttp3.Call;
 import okhttp3.Response;
 
 /**
- * Created by sjl94 on 2018/3/31.
+ * Created by Administrator on 2018/5/2.
  */
 
-public class XindeActivity extends Activity {
+public class NewsActivity extends Activity{
     private List<Comment> commentList;
     private String id;
     private String title;
-    private String time;
     private String content;
-    private String key;
-    private String username;
-
-    private ImageView tx;
     private TextView tv_title;
-    private TextView tv_time;
-    private TextView tv_key;
     private TextView tv_content;
-
 
     private Comment bean;
     private JsonParser parser;
     private JsonArray jsonArray;
     private MaterialEditText comment;
-    private String str_comment;
-    private String str_username;
-    private Button btn_comment;
 
+    private String str_username;
+    private String str_comment;
+    private Button btn_comment;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_xinde);
+        setContentView(R.layout.activity_news);
 
         ListView listView = (ListView)findViewById(R.id.listview);
-        tx=(ImageView) findViewById(R.id.tx);
         tv_title=(TextView) findViewById(R.id.title);
-        tv_time=(TextView)findViewById(R.id.time) ;
-        tv_key=(TextView)findViewById(R.id.key);
         tv_content=(TextView)findViewById(R.id.content);
-
-
         comment = (MaterialEditText)findViewById(R.id.comment);
         btn_comment = (Button)findViewById(R.id.btn_comment);
 
@@ -87,25 +68,16 @@ public class XindeActivity extends Activity {
         Bundle bundle = intent.getExtras();
         id=bundle.getString("id");
         title=bundle.getString("title");
-        time=bundle.getString("time");
         content=bundle.getString("content");
-        key=bundle.getString("key");
-        username=bundle.getString("username");
         commentList = new ArrayList<Comment>();
 
-
         tv_title.setText(title);
-        tv_time.setText(time);
+
         tv_content.setText(content);
-        tv_key.setText(key);
 
 
-        Glide.with(XindeActivity.this)
-                .load("http://193.112.122.190:3000/public/images/"+username+".png")
-                .into(tx);
 
-
-           /*构造请求体*/
+              /*构造请求体*/
         HashMap<String, String> params = new HashMap<>();
         params.put("id", id);
 
@@ -134,11 +106,6 @@ public class XindeActivity extends Activity {
         bean=new Comment();
         commentList.add(bean);
 
-
-
-
-
-
         ComAdapter mAdapter = new ComAdapter<Comment>(getBaseContext(),commentList,R.layout.item_comment){
 
             @Override
@@ -147,7 +114,7 @@ public class XindeActivity extends Activity {
                 holder.setTextView(R.id.time,item.getTime());
                 holder.setTextView(R.id.content,item.getComment());
 
-                holder.setImageBitmap(XindeActivity.this,R.id.item_tx,item.getUsername());
+                holder.setImageBitmap(NewsActivity.this,R.id.item_tx,item.getUsername());
 
             }
         };
@@ -159,7 +126,7 @@ public class XindeActivity extends Activity {
             @Override
             public void onClick(View view) {
                 str_comment = comment.getText().toString();
-                str_username = PreferencesUtils.getString(XindeActivity.this,"username");
+                str_username = PreferencesUtils.getString(NewsActivity.this,"username");
 
 
                 /*构造请求体*/
@@ -175,7 +142,7 @@ public class XindeActivity extends Activity {
                         .execute(new StringCallback() {
                             @Override
                             public void onSuccess(String s, Call call, Response response) {
-                                Toast.makeText(XindeActivity.this,"发布成功",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(NewsActivity.this,"发布成功",Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -185,10 +152,5 @@ public class XindeActivity extends Activity {
 
 
 
-
-
-
     }
-
-
 }

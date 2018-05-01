@@ -13,6 +13,7 @@ import com.example.sjl94.kaoyan.MainActivity;
 import com.example.sjl94.kaoyan.R;
 import com.example.sjl94.kaoyan.users.LoginActivity;
 import com.example.sjl94.kaoyan.users.UserManage;
+import com.example.sjl94.kaoyan.utils.PreferencesUtils;
 
 
 /**
@@ -32,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_welcome);
-        if(UserManage.getInstance().hasUserInfo(this)){
+        if((PreferencesUtils.getString(WelcomeActivity.this,"username"))!=null){
             handler.sendEmptyMessageDelayed(GO_HOME,2000);
 
         }else{
